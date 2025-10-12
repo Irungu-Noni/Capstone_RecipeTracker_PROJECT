@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function RecipeCard({ recipe }) {
     const {
         title,
@@ -53,9 +55,14 @@ function RecipeCard({ recipe }) {
                     <span>{totalTime} mins</span>
                 </div>
 
-                <button className="w-full py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
-                    View Recipe
-                </button>
+                <Link
+                    to={`/recipe/${recipe.id}`}
+                    className='block w-full'
+                >
+                    <button className="w-full py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-secondary transition-colors">
+                        View Recipe
+                    </button>
+                </Link>
             </div>
         </div>
     );

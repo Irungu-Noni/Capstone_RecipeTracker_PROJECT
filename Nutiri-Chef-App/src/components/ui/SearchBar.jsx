@@ -35,7 +35,7 @@ function SearchBar({ onSearch, placeholder = "Search recipes or ingredients..." 
     };
 
     return (
-        <div>
+        <div className="relative w-full max-w-2xl mx-auto">
             <input
                 type="text"
                 value={searchTerm}
@@ -47,7 +47,7 @@ function SearchBar({ onSearch, placeholder = "Search recipes or ingredients..." 
             {searchTerm && (
                 <button
                     onClick={handleClear}
-                    className="absolute right-3 top-1/2 transform-translate-y-1/2 text-text-secondary hover:text-text-primary focus:outline-none"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-text-secondary hover:text-text-primary focus:outline-none"
                     aria-label="Clear search">✕
                 </button>
             )}
