@@ -1,12 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getRecipeById } from '../services/recipeService';
+import { useMealPlanStore } from '../store/useMealPlanStore';
+import AddMealToPlanModal from '../components/modals/AddToMealPlanModal';
+
+// Days constant for alert message
+const DAYS_OF_THE_WEEK = [
+  { id: 'monday', label: 'Monday' },
+  { id: 'tuesay', label: 'Tueday' },
+  { id: 'wednesday', label: 'Wednesday' },
+  { id: 'thursday', label: 'Thursday' },
+  { id: 'friday', label: 'Friday' },
+  { id: 'saturday', label: 'Saturday' },
+  { id: 'sunday', label: 'Sunday' }
+];
 
 function RecipeDetilPage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { addRecipeSlot } = useMealPlanStore();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -57,7 +73,7 @@ function RecipeDetilPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-3xl mx-auto">
           <div className="bg-red-100 text-red-800 p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-semibold mb-2">Error</h2>
+            <h2 className="text-xl font-semibold mb-2">Ooop!! Recipe not found</h2>
             <p>{error}</p>
             <Link to="/" className="mt-4 inline-block bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-colors">
               Back to Recipes
@@ -149,7 +165,22 @@ function RecipeDetilPage() {
           )}
 
           <div className='mb-8'>
-            <button className="w-full md:w-auto px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-secondary transition-colors">Add to Meal Plan</button>
+            <button
+              onClick={() => setIsModalOpen(true)} 
+              className="w-full md:w-auto px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-secondary transition-colors">Add to Meal Plan</button>
+
+              {isModalOpen && (
+                <AddMealToPlanModal
+                  isOpen={isModalOpen}
+                  onClose={() => setIsModalOpen(false)}
+                  onAdd={(day, mealType) => {
+                    addRecipeSlot(day, mealType, recipe);
+                    const dayLabel = DAYS_OF_THE_WEEK.find(d => d.id === day)?.label || day;
+                    alert(`Added to ${dayLabel} ${mealType}`);
+                  }}
+                  recipeTitle={recipe.title}
+                />
+              )}
           </div>
 
           <section className="mb-8">
@@ -187,6 +218,19 @@ function RecipeDetilPage() {
             )}
           </section>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function NutritionItem({ label, value, unit, color }) {
+  return (
+    <div className='text-center'>
+      <div className={`text-lg font-bold ${color}`}>
+        {value}
+      </div>
+      <div className='text-x5 text-text-secondary mt-1'>
+        {label} {unit}
       </div>
     </div>
   );

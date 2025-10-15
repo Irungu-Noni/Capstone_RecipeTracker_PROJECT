@@ -1,14 +1,3 @@
-// import { StrictMode } from 'react'
-// import { createRoot } from 'react-dom/client'
-// import './index.css'
-// import App from './App.jsx'
-
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <App />
-//   </StrictMode>,
-// )
-
 // src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -28,7 +17,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: "recipe/:id", element: <RecipeDetailPage /> },
       { path: "meal-plan", element: <MealPlanPage /> },
-      { path: "shopping-list", element: <ShoppingListPage /> },
+      { path: "shopping-list", element: <ShoppingListPage /> }
     ],
   },
 ])
