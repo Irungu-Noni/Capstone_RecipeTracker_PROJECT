@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getRecipeById } from '../services/recipeService';
 import { useMealPlanStore } from '../store/useMealPlanStore';
-import AddMealToPlanModal from '../components/modals/AddToMealPlanModal';
+import AddMealToPlanModal from '../components/modals/AddMealToPlanModal';
 
 // Days constant for alert message
 const DAYS_OF_THE_WEEK = [
   { id: 'monday', label: 'Monday' },
-  { id: 'tuesay', label: 'Tueday' },
+  { id: 'tuesay', label: 'Tuesday' },
   { id: 'wednesday', label: 'Wednesday' },
   { id: 'thursday', label: 'Thursday' },
   { id: 'friday', label: 'Friday' },
@@ -15,14 +15,14 @@ const DAYS_OF_THE_WEEK = [
   { id: 'sunday', label: 'Sunday' }
 ];
 
-function RecipeDetilPage() {
+function RecipeDetailPage() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { addRecipeSlot } = useMealPlanStore();
+  const { addRecipeToSlot } = useMealPlanStore();
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -97,7 +97,7 @@ function RecipeDetilPage() {
             alt={recipe.title}
             className='w-full h-80 md:h-96 object-cover'
             onError={(event) => {
-              event.target.src = "https://picsum.photos/800/400?blur=2&graycale";
+              event.target.src = "https://picsum.photos/800/400?blur=2&grayscale";
             }} />
         </div>
 
@@ -111,7 +111,7 @@ function RecipeDetilPage() {
               {recipe.dietaryTags.map((tag, index) => (
                 <span
                   key={index}
-                  className={`px-3 py-1 text-sm font-medium rounded-full ${tag === 'Vegan' ? 'bg-success text-white' : tag === 'Vegeterian' ? 'bg-accent text-text-primary' : tag === 'Gluten-Free' ? 'bg-info text-white' : tag === 'Keto' ? 'bg-keto text-white' : 'bg-slate-200 text-slate-700'}`}
+                  className={`px-3 py-1 text-sm font-medium rounded-full ${tag === 'Vegan' ? 'bg-success text-white' : tag === 'Vegetarian' ? 'bg-accent text-text-primary' : tag === 'Gluten-Free' ? 'bg-info text-white' : tag === 'Keto' ? 'bg-keto text-white' : 'bg-slate-200 text-slate-700'}`}
                 >
                   {tag}
                 </span>
@@ -174,7 +174,7 @@ function RecipeDetilPage() {
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}
                   onAdd={(day, mealType) => {
-                    addRecipeSlot(day, mealType, recipe);
+                    addRecipeToSlot(day, mealType, recipe);
                     const dayLabel = DAYS_OF_THE_WEEK.find(d => d.id === day)?.label || day;
                     alert(`Added to ${dayLabel} ${mealType}`);
                   }}
@@ -236,4 +236,4 @@ function NutritionItem({ label, value, unit, color }) {
   );
 }
 
-export default RecipeDetilPage;
+export default RecipeDetailPage;

@@ -3,7 +3,7 @@ import { useState } from "react";
 // Defining the days and meal types
 const DAYS_OF_THE_WEEK = [
     { id: 'monday', label: 'Monday' },
-    { id: 'tuesday', label: 'Tueday' },
+    { id: 'tuesday', label: 'Tuesday' },
     { id: 'wednesday', label: 'Wednesday' },
     { id: 'thursday', label: 'Thursday' },
     { id: 'friday', label: 'Friday' },
