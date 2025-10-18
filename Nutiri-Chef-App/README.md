@@ -5,8 +5,6 @@
 > A recipe app focused on **nutrition, personalization, and simplicity**.  
 > Week 1: Responsive UI with mock data ✨
 
-![Week 1 Homepage](https://via.placeholder.com/800x400/FBF9F5/2D312F?text=Responsive+Recipe+Grid) <!-- Replace with screenshot later -->
-
 ## 🎯 Why This Stands Out
 - **Unique palette**: Sage green (`#6B9E78`) + terracotta (`#D4A574`) — earthy, not generic  
 - **Performance-first**: Debounced search, `key` props, and `line-clamp` for stable grids  
@@ -48,11 +46,11 @@ src/
 ├── data/ # MockRecipes.js (realistic, structured)
 └── ...
 
+https://docs.google.com/document/d/1wxhNcDdPCqQrUGtWK_dodqAmD23lbtlOKiO4BQ2HJKg/edit?usp=sharing - WEEK THREE DOCUMENTATION
+
 # ------------------------------WEEK FOUR---------------------------------------------
 
 > Week 2: Real API integration with dynamic search, filters, and detail view ✨
-
-![Week 2 Demo](https://via.placeholder.com/800x400/FBF9F5/2D312F?text=Real+Recipes+with+Nutrition) <!-- Replace with screenshot -->
 
 ## 🔌 Why Spoonacular?
 - **Structured data**: Nutrition, ingredients, dietary flags in one call
@@ -92,3 +90,57 @@ src/
 ├── pages/HomePage.jsx # Dynamic search + filters
 ├── pages/RecipeDetailPage.jsx # Nutrition-focused detail view
 └── ...
+
+https://docs.google.com/document/d/1Juo052CqyO222VO4dGPJoeGi7auM5bp7dGpv2lPd7f0/edit?usp=sharing - WEEK FOUR DOCUMENTATION
+
+# ------------------------------WEEK FIVE---------------------------------------------
+
+> **A personalized recipe planner that helps you eat healthier without the guesswork.**  
+> Final assessment project with meal planning, nutrition tracking, and smart shopping lists.
+
+## 🌟 Why This Stands Out
+- **Central Selling Point**: Weekly meal planner + **deduplicated shopping list** (200g chicken + 100g chicken = 300g chicken)
+- **Nutrition-First**: Calories + macros on every recipe
+- **Personalized**: Dietary filters (Vegan, Keto, Gluten-Free) + persistent planning
+- **Professional UX**: Loading skeletons, error resilience, and accessibility-first design
+
+## 🚀 Core Features
+### 🔍 Dynamic Recipe Discovery
+- Real recipes from Spoonacular API
+- Search by ingredient or dish name
+- Dietary filters with instant results
+
+### 📅 Weekly Meal Planner
+- Plan meals for Mon–Sun (breakfast/lunch/dinner)
+- Persistent storage (survives refreshes)
+- Empty slots show “+ Add Recipe”
+
+### 🛒 Smart Shopping List
+- **Auto-generated** from your meal plan
+- **Deduplicates ingredients** by name + sums amounts
+- Check off items as you shop (persistent state)
+- Alphabetically sorted for easy scanning
+
+### 📊 Nutrition Focus
+- Calories, protein, carbs, fat per serving
+- Color-coded macros (protein = green, fat = red)
+- Defensive rendering for free-tier API limitations
+
+## 🛠️ Tech Stack
+- **Frontend**: React, Vite, React Router
+- **Styling**: Tailwind CSS (custom sage/terracotta palette)
+- **State**: Zustand + localStorage persistence
+- **API**: Spoonacular (nutrition-focused recipes)
+- **Icons**: Lucide React (clean, lightweight)
+
+## 📂 Project Structure
+src/
+├── components/
+│ ├── layout/ # Navbar
+│ └── modals/ # AddToMealPlanModal
+├── pages/ # HomePage, RecipeDetailPage, MealPlanPage, ShoppingListPage
+├── services/ # recipeService.js (API abstraction)
+├── store/ # useMealPlanStore.js (Zustand + persistence)
+└── utils/ # shoppingListUtils.js (deduplication logic)
+
+https://docs.google.com/document/d/1cWAztjXvLlTFq0lQdW_GW-khW-VA4bX2qGUDk8akVWg/edit?usp=sharing - WEEK FIVE DOCUMENTATION

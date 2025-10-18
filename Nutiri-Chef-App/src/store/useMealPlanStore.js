@@ -21,6 +21,9 @@ export const useMealPlanStore = create(
             // 🔸 State: the current meal plan
             plan: initialPlan,
 
+            // 🔸 State: checked items in the shopping list
+            checkedItems: {},
+
             // 🔸 Action: Adding a recipe to a specific day/meal slot
             addRecipeToSlot: (day, mealType, recipe) => {
                 set((state) => ({
@@ -64,11 +67,26 @@ export const useMealPlanStore = create(
                     }
                 }
                 return recipes;
+            },
+
+            // 🔸 Action: Toggling checked state of an item in the shopping list
+            toggleCheckedItem: (ingredientName) => {
+                set((state) => ({
+                    checkedItems: {
+                        ...state.checkedItems,
+                        [ingredientName]: !state.checkedItems[ingredientName]
+                    }
+                }));
+            },
+
+            // 🔸 Action: Clearing all checked items in the shopping list
+            clearCheckedItems: () => {
+                set({ checkedItems: {} });
             }
         }),
         {
             name: 'meal-plan-storage', // localStorage key
-            partialize: (state) => ({ plan: state.plan }) //only persisting the plan
+            partialize: (state) => ({ plan: state.plan, checkedItems: state.checkedItems }) // perit checked items
         }
     )
 );

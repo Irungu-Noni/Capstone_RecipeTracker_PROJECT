@@ -76,7 +76,7 @@ function AddMealToPlanModal({
                     </div>
 
                     <div className="mt-6 flex justify-end space-x-3">
-                        <button type="button" className="px-4 py-2 text-text-primary hover:bg-slate-100 rounded-lg transition-colors">
+                        <button type="button" onClick={onClose} className="px-4 py-2 text-text-primary hover:bg-slate-100 rounded-lg transition-colors">
                             Cancel
                         </button>
                         <button type="submit" className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition-colors font-medium">Add to Plan</button>
