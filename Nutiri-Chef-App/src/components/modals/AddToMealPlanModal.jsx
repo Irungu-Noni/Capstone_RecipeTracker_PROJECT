@@ -17,7 +17,7 @@ const MEAL_TYPES = [
     { id: 'dinner', label: 'Dinner' }
 ];
 
-function AddMealToPlanModal({
+function AddToMealPlanModal({
     isOpen,
     onClose,
     onAdd,
@@ -87,4 +87,4 @@ function AddMealToPlanModal({
     );
 }
 
-export default AddMealToPlanModal;
+export default AddToMealPlanModal;

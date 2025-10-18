@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getRecipeById } from '../services/recipeService';
 import { useMealPlanStore } from '../store/useMealPlanStore';
-import AddMealToPlanModal from '../components/modals/AddMealToPlanModal';
+import AddToMealPlanModal from '../components/modals/AddToMealPlanModal';
 
 // Days constant for alert message
 const DAYS_OF_THE_WEEK = [
@@ -170,7 +170,7 @@ function RecipeDetailPage() {
               className="w-full md:w-auto px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-secondary transition-colors">Add to Meal Plan</button>
 
               {isModalOpen && (
-                <AddMealToPlanModal
+                <AddToMealPlanModal
                   isOpen={isModalOpen}
                   onClose={() => setIsModalOpen(false)}
                   onAdd={(day, mealType) => {
